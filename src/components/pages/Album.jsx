@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import getMusics from '../../services/musicsAPI';
 import MusicCard from './MusicCard';
+import { addSong } from '../../services/favoriteSongsAPI';
+import Loading from './Loading';
 
 class Album extends Component {
   state = {
     musicAPI: {},
-    reponse: false,
+    response: false,
+    idsOfMusicsSalve: [],
+    loading: true,
   };
 
   componentDidMount() {
@@ -21,30 +25,61 @@ class Album extends Component {
       },
     } = this.props;
     const musics = await getMusics(id);
-    this.setState({ reponse: false }, () => {
-      this.setState({ musicAPI: musics, reponse: true });
+    this.setState({ response: false }, () => {
+      this.setState({ musicAPI: musics, response: true });
     });
   }
 
+  addFavorites = ({ target }) => {
+    const { id, checked } = target;
+    const { musicAPI } = this.state;
+    const { idsOfMusicsSalve } = this.state;
+    if (checked) {
+      const musicSalve = musicAPI.filter((obj) => obj.trackId === Number(id));
+      this.setState(
+        (prevEvent) => ({
+          idsOfMusicsSalve: [...prevEvent.idsOfMusicsSalve, id],
+          loading: false,
+        }),
+        async () => {
+          await addSong(musicSalve);
+          this.setState({ loading: true });
+        },
+      );
+    } else {
+      const newArray = idsOfMusicsSalve.filter(
+        (idNewArray) => idNewArray !== id,
+      );
+      this.setState({ idsOfMusicsSalve: newArray });
+    }
+  };
+
   render() {
-    const { musicAPI, reponse } = this.state;
+    const { musicAPI, response, loading, idsOfMusicsSalve } = this.state;
 
-    if (reponse) {
+    if (response && loading) {
       const { artistName, collectionName } = musicAPI[0];
-
       return (
         <div data-testid="page-album">
           <Header />
-          {reponse && (
+          {response && (
             <div>
               <p data-testid="artist-name">{artistName}</p>
               <p data-testid="album-name">{collectionName}</p>
-              {musicAPI.map(({ artistId, trackName, previewUrl }, i) => {
+              {musicAPI.map(({ trackName, previewUrl, trackId }, i) => {
                 if (i >= 1) {
                   return (
-                    <div key={ artistId }>
+                    <div key={ trackId }>
                       <p>{trackName}</p>
-                      <MusicCard previewUrl={ previewUrl } />
+                      <MusicCard
+                        previewUrl={ previewUrl }
+                        trackId={ trackId }
+                        addFavorites={ this.addFavorites }
+                        checked={ idsOfMusicsSalve.some(
+                          (idsSave) => Number(idsSave) === Number(trackId),
+                        ) }
+                        arr={ idsOfMusicsSalve }
+                      />
                     </div>
                   );
                 }
@@ -54,6 +89,9 @@ class Album extends Component {
           )}
         </div>
       );
+    }
+    if (!loading) {
+      return <Loading />;
     }
     return (
       <div data-testid="page-album">
