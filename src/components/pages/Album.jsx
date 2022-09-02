@@ -57,41 +57,41 @@ class Album extends Component {
   render() {
     const { musicAPI, response, loading, idsOfMusicsSalve } = this.state;
 
-    if (response && loading) {
+    if (response) {
       const { artistName, collectionName } = musicAPI[0];
       return (
-        <div data-testid="page-album">
-          <Header />
-          {response && (
-            <div>
-              <p data-testid="artist-name">{artistName}</p>
-              <p data-testid="album-name">{collectionName}</p>
-              {musicAPI.map(({ trackName, previewUrl, trackId }, i) => {
-                if (i >= 1) {
-                  return (
-                    <div key={ trackId }>
-                      <p>{trackName}</p>
-                      <MusicCard
-                        previewUrl={ previewUrl }
-                        trackId={ trackId }
-                        addFavorites={ this.addFavorites }
-                        checked={ idsOfMusicsSalve.some(
-                          (idsSave) => Number(idsSave) === Number(trackId),
-                        ) }
-                        arr={ idsOfMusicsSalve }
-                      />
-                    </div>
-                  );
-                }
-                return '';
-              })}
-            </div>
-          )}
-        </div>
+        <>
+          {!loading && <Loading />}
+          <div data-testid="page-album">
+            <Header />
+            {response && (
+              <div>
+                <p data-testid="artist-name">{artistName}</p>
+                <p data-testid="album-name">{collectionName}</p>
+                {musicAPI.map(({ trackName, previewUrl, trackId }, i) => {
+                  if (i >= 1) {
+                    return (
+                      <div key={ trackId }>
+                        <p>{trackName}</p>
+                        <MusicCard
+                          previewUrl={ previewUrl }
+                          trackId={ trackId }
+                          addFavorites={ this.addFavorites }
+                          checked={ idsOfMusicsSalve.some(
+                            (idsSave) => Number(idsSave) === Number(trackId),
+                          ) }
+                          arr={ idsOfMusicsSalve }
+                        />
+                      </div>
+                    );
+                  }
+                  return '';
+                })}
+              </div>
+            )}
+          </div>
+        </>
       );
-    }
-    if (!loading) {
-      return <Loading />;
     }
     return (
       <div data-testid="page-album">
