@@ -30,7 +30,7 @@ class MusicCard extends Component {
 
 MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
-  trackId: PropTypes.string.isRequired,
+  trackId: PropTypes.number.isRequired,
   addFavorites: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
 };

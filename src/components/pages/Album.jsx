@@ -3,19 +3,29 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import getMusics from '../../services/musicsAPI';
 import MusicCard from './MusicCard';
-import { addSong } from '../../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class Album extends Component {
   state = {
-    musicAPI: {},
+    musicAPI: [],
     response: false,
     idsOfMusicsSalve: [],
     loading: true,
+    savedSongs: [],
   };
 
   componentDidMount() {
     this.getMusicAPI();
+    console.log('componentDidMount');
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
   }
 
   async getMusicAPI() {
@@ -25,9 +35,13 @@ class Album extends Component {
       },
     } = this.props;
     const musics = await getMusics(id);
+    const songs = await getFavoriteSongs();
     this.setState({ response: false }, () => {
-      this.setState({ musicAPI: musics, response: true });
+      this.setState({ musicAPI: musics, savedSongs: songs }, () => {
+        this.setState({ response: true });
+      });
     });
+    this.updateSongs();
   }
 
   addFavorites = ({ target }) => {
@@ -54,9 +68,22 @@ class Album extends Component {
     }
   };
 
-  render() {
-    const { musicAPI, response, loading, idsOfMusicsSalve } = this.state;
+  updateSongs() {
+    const { savedSongs } = this.state;
+    const idsSalve = savedSongs.map((obj) => obj[0].trackId.toString());
+    this.setState({ idsOfMusicsSalve: [...idsSalve] });
+  }
 
+  // refreshScreen() {
+  //   const { savedSongs } = this.state;
+  //   const idsSalve = savedSongs.map((obj) => obj[0].trackId.toString());
+  //   this.setState({ idsOfMusicsSalve: [...idsSalve] });
+  // }
+
+  render() {
+    // this.updateSongs();
+    const { musicAPI, response, loading, idsOfMusicsSalve, savedSongs } = this.state;
+    console.log('render');
     if (response) {
       const { artistName, collectionName } = musicAPI[0];
       return (
@@ -77,10 +104,9 @@ class Album extends Component {
                           previewUrl={ previewUrl }
                           trackId={ trackId }
                           addFavorites={ this.addFavorites }
-                          checked={ idsOfMusicsSalve.some(
+                          checked={ (idsOfMusicsSalve.some(
                             (idsSave) => Number(idsSave) === Number(trackId),
-                          ) }
-                          arr={ idsOfMusicsSalve }
+                          )) }
                         />
                       </div>
                     );
