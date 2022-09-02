@@ -17,16 +17,16 @@ class Album extends Component {
 
   componentDidMount() {
     this.getMusicAPI();
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
   }
 
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate');
+  // }
 
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount');
+  // }
 
   async getMusicAPI() {
     const {
@@ -82,7 +82,7 @@ class Album extends Component {
 
   render() {
     // this.updateSongs();
-    const { musicAPI, response, loading, idsOfMusicsSalve, savedSongs } = this.state;
+    const { musicAPI, response, loading, idsOfMusicsSalve } = this.state;
     console.log('render');
     if (response) {
       const { artistName, collectionName } = musicAPI[0];
