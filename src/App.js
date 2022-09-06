@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Album from './components/pages/Album';
 import Favorites from './components/pages/Favorites';
