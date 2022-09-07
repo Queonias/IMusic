@@ -9,6 +9,15 @@ import ProfileEdit from './components/pages/ProfileEdit';
 import Search from './components/pages/Search';
 
 class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.getAlbum = this.getAlbum.bind(this);
+  // }
+
+  // getAlbum() {
+  //   console.log('Olá');
+  // }
+
   render() {
     return (
       <div>
