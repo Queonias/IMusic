@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import getMusics from '../../services/musicsAPI';
 import MusicCard from '../MusicCard';
+import { addSong } from '../../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor(props) {
@@ -32,6 +33,10 @@ class Album extends Component {
     this.setState({ author, songs });
   }
 
+  // addToFavorites = async (music) => {
+  //   await addSong(music);
+  // }
+
   render() {
     const { songs, author } = this.state;
     return (
@@ -46,6 +51,9 @@ class Album extends Component {
               key={ song.trackId }
               trackName={ song.trackName }
               previewUrl={ song.previewUrl }
+              trackId={ song.trackId }
+              addSong={ addSong }
+              song={ song }
             />
           ))}
         </div>
