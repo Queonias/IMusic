@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import getMusics from '../../services/musicsAPI';
 import MusicCard from '../MusicCard';
-import { addSong } from '../../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor(props) {
@@ -52,7 +51,6 @@ class Album extends Component {
               trackName={ song.trackName }
               previewUrl={ song.previewUrl }
               trackId={ song.trackId }
-              addSong={ addSong }
               song={ song }
             />
           ))}
