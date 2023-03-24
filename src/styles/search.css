@@ -1,0 +1,123 @@
+.class-main {
+  display: flex;
+  background-image: url('../images/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+}
+
+.page-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+}
+
+.search-artist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 60%;
+    border-radius: 20px;
+}
+
+.search-artist-input {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-artist-button {
+    width: 120px;
+    margin-left: 8px;
+}
+
+.search-artist-input input {
+    display: flex;
+    justify-self: center;
+    margin: auto;
+    margin-top: 4px;
+    margin-bottom: -3px;
+}
+
+.search-artist p {
+    font-size: 40px;
+    color: white;
+    font-weight: 500;
+}
+
+.results-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.results-search .musics {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    padding-right: 0;
+    margin-right: -100px;
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.results-search h2 {
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card-music {
+    background-color: thistle;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-music p {
+    display: flex;
+    margin: auto;
+    text-justify: auto;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    font-size: 14px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.card-music img {
+    display: flex;
+    text-justify: auto;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.link-to-album {
+    display: flex;
+    text-justify: auto;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+}

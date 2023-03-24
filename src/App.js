@@ -20,37 +20,35 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Switch>
-          <Route exact path="/" render={ (props) => <Login { ...props } /> } />
-          <Route
-            exact
-            path="/search"
-            render={ (props) => <Search { ...props } /> }
-          />
-          <Route
-            exact
-            path="/album/:id"
-            render={ (props) => <Album { ...props } /> }
-          />
-          <Route
-            exact
-            path="/favorites"
-            render={ (props) => <Favorites { ...props } /> }
-          />
-          <Route
-            exact
-            path="/profile"
-            render={ (props) => <Profile { ...props } /> }
-          />
-          <Route
-            exact
-            path="/profile/edit"
-            render={ (props) => <ProfileEdit { ...props } /> }
-          />
-          <Route exact path="*" render={ (props) => <NotFound { ...props } /> } />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+        <Route
+          exact
+          path="/search"
+          render={ (props) => <Search { ...props } /> }
+        />
+        <Route
+          exact
+          path="/album/:id"
+          render={ (props) => <Album { ...props } /> }
+        />
+        <Route
+          exact
+          path="/favorites"
+          render={ (props) => <Favorites { ...props } /> }
+        />
+        <Route
+          exact
+          path="/profile"
+          render={ (props) => <Profile { ...props } /> }
+        />
+        <Route
+          exact
+          path="/profile/edit"
+          render={ (props) => <ProfileEdit { ...props } /> }
+        />
+        <Route exact path="*" render={ (props) => <NotFound { ...props } /> } />
+      </Switch>
     );
   }
 }

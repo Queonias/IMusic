@@ -1,0 +1,52 @@
+.page-album {
+    display: flex;
+    height: 100vh;
+}
+
+.album-container p {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.album-container {
+    background-image: url('../images/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-y: scroll;
+    padding-top: 30px;
+}
+
+.container-music {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.music-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: thistle;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.track-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    /* margin-top: 10px; */
+}
+
+.favorita-music {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.favorita-music input {
+    margin-left: 10px;
+}

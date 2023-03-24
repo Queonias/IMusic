@@ -43,9 +43,9 @@ class MusicCard extends Component {
     const { trackName, previewUrl, trackId } = this.props;
     const { loading, musicSalve } = this.state;
     return (
-      <div>
+      <div className="music-card">
         {loading && <span>Carregando...</span>}
-        <span>{trackName}</span>
+        <span className="track-name">{trackName}</span>
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento
@@ -53,7 +53,7 @@ class MusicCard extends Component {
           <code>audio</code>
           .
         </audio>
-        <label htmlFor={ `${trackId}` }>
+        <label htmlFor={ `${trackId}` } className="favorita-music">
           Favorita
           <input
             id={ `${trackId}` }

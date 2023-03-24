@@ -1,9 +1,13 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Header from '../Header';
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
 import Loading from '../Loading';
+import '../../styles/search.css';
 
 class Search extends Component {
   constructor(props) {
@@ -53,61 +57,66 @@ class Search extends Component {
       loading,
     } = this.state;
     return (
-      <div data-testid="page-search">
-        <p>Pesquisa</p>
+      <div className="class-main container-fluid">
         <Header />
-        <form>
-          <label htmlFor="search-artist-input">
-            <input
-              type="text"
-              name="name"
-              id=""
-              data-testid="search-artist-input"
-              value={ inputMusic }
-              onChange={ this.validateInput }
-            />
-          </label>
-          <button
-            type="button"
-            data-testid="search-artist-button"
-            disabled={ disabled }
-            onClick={ this.getAlbum }
-          >
-            Pesquisar
-          </button>
-        </form>
-        {loading && <Loading />}
-        <div>
-          {(!listAlbum || listAlbum.length === 0) && pressHandleClick && (
-            <h2>Nenhum álbum foi encontrado</h2>
-          )}
+        <div data-testid="page-search" className="page-search">
+          <div className="search-artist">
+            <p className="title">Pesquisar</p>
+            {/* <div > */}
+            <Form className="search-artist-input">
+              <Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  id=""
+                  data-testid="search-artist-input"
+                  value={ inputMusic }
+                  onChange={ this.validateInput }
+                />
+              </Form.Label>
+              <Button
+                type="button"
+                data-testid="search-artist-button"
+                disabled={ disabled }
+                onClick={ this.getAlbum }
+                className="search-artist-button"
+              >
+                Pesquisar
+              </Button>
+            </Form>
+            {/* </div> */}
+          </div>
+          {loading && <Loading />}
+          <div className="results-search">
+            {(!listAlbum || listAlbum.length === 0) && pressHandleClick && (
+              <h2>Nenhum álbum foi encontrado</h2>
+            )}
 
-          {listAlbum && <h2>{`Resultado de álbuns de: ${musicSearched}`}</h2>}
+            {listAlbum && <h2>{`Resultado de álbuns de: ${musicSearched}`}</h2>}
 
-          {listAlbum
-            && listAlbum.map((music) => (
-              <div key={ music.artistId }>
-                <img src={ music.artworkUrl100 } alt={ music.collectionName } />
-                <p>{music.collectionName}</p>
-                <Link
-                  to={ `/album/${music.collectionId}` }
-                  data-testid={ `link-to-album-${music.collectionId}` }
-                >
-                  Ir para música
-                </Link>
-              </div>
-            ))}
+            {listAlbum
+            && <div className="musics">
+              {' '}
+              { listAlbum.map((music) => (
+                <div key={ music.artistId } className="card-music">
+                  <img src={ music.artworkUrl100 } alt={ music.collectionName } />
+                  <p>{music.collectionName}</p>
+                  <Link
+                    to={ `/album/${music.collectionId}` }
+                    data-testid={ `link-to-album-${music.collectionId}` }
+                    className="link-to-album"
+                  >
+                    Ir para música
+                  </Link>
+                </div>
+              )) }
+
+               </div>}
+          </div>
         </div>
       </div>
     );
   }
 }
-
-// Search.propTypes = {
-//   getAlbum: PropTypes.string.isRequired,
-//   trackId: PropTypes.number.isRequired,
-//   addFavorites: PropTypes.func.isRequired,
-//   checked: PropTypes.bool.isRequired,
-// };
 
 export default Search;
