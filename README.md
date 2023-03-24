@@ -1,4 +1,4 @@
-<h1>ITunes App</h1>
+<h1>IMusic App</h1>
 <p>Este projeto é um aplicativo web que permite que os usuários pesquisem suas músicas favoritas e as adicionem aos seus favoritos. O aplicativo faz uso da API do iTunes para recuperar informações sobre as músicas e exibi-las para o usuário.</p>
 
 <h2>Instalação</h2>
@@ -18,10 +18,10 @@
 </ol>
 
 <h2>Deploy</h2>
-<p>Você pode acessar o ITunes App que está em produção em https://i-music-eight.vercel.app/.</p>
+<p>Você pode acessar o IMusic App que está em produção em https://i-music-eight.vercel.app/.</p>
 
 <h2>Uso</h2>
-<p>Para usar o ITunes App, siga estas etapas:</p>
+<p>Para usar o IMusic App, siga estas etapas:</p>
 
 <ol>
   <li>Faça login no aplicativo inserindo seu nome de usuário.</li>
