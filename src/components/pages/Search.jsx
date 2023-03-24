@@ -94,7 +94,7 @@ class Search extends Component {
 
             {listAlbum && <h2>{`Resultado de álbuns de: ${musicSearched}`}</h2>}
 
-            {listAlbum && (
+            {(listAlbum && !loading) && (
               <div className="musics">
                 {' '}
                 {listAlbum.map((music) => (

@@ -43,33 +43,35 @@ class Login extends Component {
     return (
       <div data-testid="page-login" className="container-login container-fluid">
         <div className="login-form">
-          {msg && <Loading />}
-          <Form>
-            <Form.Group className="mb-3 name-imput" controlId="formBasicEmail">
-              {/* <Form.Label>Nome do Usuário</Form.Label> */}
-              <h1>Login</h1>
-              <Form.Label>
-                <Form.Control
-                  type="text"
-                  name="name"
-                  id="login-name-input"
-                  placeholder="Digite o seu nome"
-                  onChange={ this.nameValidator }
-                  value={ nameUser }
-                  data-testid="login-name-input"
-                />
+          {msg ? <Loading /> : (
+            <Form>
+              <Form.Group className="mb-3 name-imput" controlId="formBasicEmail">
+                {/* <Form.Label>Nome do Usuário</Form.Label> */}
+                <h1>Login</h1>
+                <Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    id="login-name-input"
+                    placeholder="Digite o seu nome"
+                    onChange={ this.nameValidator }
+                    value={ nameUser }
+                    data-testid="login-name-input"
+                  />
 
-              </Form.Label>
-            </Form.Group>
-            <Button
-              type="button"
-              onClick={ this.handleclick }
-              disabled={ loginName }
-              data-testid="login-submit-button"
-            >
-              Entrar
-            </Button>
-          </Form>
+                </Form.Label>
+              </Form.Group>
+              <Button
+                type="button"
+                onClick={ this.handleclick }
+                disabled={ loginName }
+                data-testid="login-submit-button"
+              >
+                Entrar
+              </Button>
+            </Form>
+          )}
+
           {enviar && <Redirect to="/search" />}
         </div>
       </div>
