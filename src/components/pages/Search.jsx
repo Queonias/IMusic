@@ -94,24 +94,24 @@ class Search extends Component {
 
             {listAlbum && <h2>{`Resultado de álbuns de: ${musicSearched}`}</h2>}
 
-            {listAlbum
-            && <div className="musics">
-              {' '}
-              { listAlbum.map((music) => (
-                <div key={ music.artistId } className="card-music">
-                  <img src={ music.artworkUrl100 } alt={ music.collectionName } />
-                  <p>{music.collectionName}</p>
-                  <Link
-                    to={ `/album/${music.collectionId}` }
-                    data-testid={ `link-to-album-${music.collectionId}` }
-                    className="link-to-album"
-                  >
-                    Ir para música
-                  </Link>
-                </div>
-              )) }
-
-               </div>}
+            {listAlbum && (
+              <div className="musics">
+                {' '}
+                {listAlbum.map((music) => (
+                  <div key={ music.artistId } className="card-music">
+                    <img src={ music.artworkUrl100 } alt={ music.collectionName } />
+                    <p>{music.collectionName}</p>
+                    <Link
+                      to={ `/album/${music.collectionId}` }
+                      data-testid={ `link-to-album-${music.collectionId}` }
+                      className="link-to-album"
+                    >
+                      Ir para música
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
