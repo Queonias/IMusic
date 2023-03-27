@@ -17,7 +17,12 @@
   <li>Acesse o aplicativo em seu navegador em http://localhost:3000/</li>
 </ol>
 
-<h2>Deploy</h2>
+<h2>Demonstração</h2>
+
+<p align="center" width="300px">
+<a href="https://i-music-eight.vercel.app/."><img src="/public/app.png"></a>
+</p>
+
 <p>Você pode acessar o IMusic App que está em produção em https://i-music-eight.vercel.app/.</p>
 
 <h2>Uso</h2>
